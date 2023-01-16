@@ -1,11 +1,15 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
+import { CSS3DRenderer,CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 const scenemodel = new URL('../models/scene.gltf', import.meta.url);
 //const floortext = new URL('../models/floor.png', import.meta.url);
-
+let content ='<div>' +
+'<h1>This is an H1 Element.</h1>' +
+'<span class="large">Hello Three.js cookbook</span>' +
+'<textarea> And this is a textarea</textarea>' +
+'</div>';
 //init renderer/scene /camera/lights
 //3d model loader
 const loader = new GLTFLoader();
@@ -20,7 +24,7 @@ camera.lookAt(0, 0, 0);
 //###########################################
 //lights
 //const light = new THREE.PointLight(0xFFE0BD, 2, 1000);
-const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 4);
+const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
 //renderer and linking it to the html
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer({ canvas });
@@ -102,3 +106,25 @@ function resizeRendererToDisplaySize(renderer) {
 
 //to start requestion animation frame loop like while(1)
 requestAnimationFrame(render);
+
+
+function createCSS3DObject(content) 
+    {
+      // convert the string to dome elements
+      var wrapper = document.createElement('div');
+      wrapper.innerHTML = content;
+      var div = wrapper.firstChild;
+
+      // set some values on the div to style it.
+      // normally you do this directly in HTML and 
+      // CSS files.
+      div.style.width = '370px';
+      div.style.height = '370px';
+      div.style.opacity = 0.7;
+      div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
+
+      // create a CSS3Dobject and return it.
+      var object = new CSS3DObject(div);
+      return object;
+    }
+    createCSS3DObject(content) ;
