@@ -1,34 +1,39 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { CSS3DRenderer,CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
-const scenemodel = new URL('../models/scene.gltf', import.meta.url);
-//const floortext = new URL('../models/floor.png', import.meta.url);
-let content ='<div>' +
-'<h1>This is an H1 Element.</h1>' +
-'<span class="large">Hello Three.js cookbook</span>' +
-'<textarea> And this is a textarea</textarea>' +
-'</div>';
+
+
+const scenemodel = new URL('../models/SQUIDHOUSE.gltf', import.meta.url);
 //init renderer/scene /camera/lights
 //3d model loader
 const loader = new GLTFLoader();
 const scene = new THREE.Scene();
+
 //camera
 //##########################################
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500);//camera config
-camera.position.set(0, 0, 15);//camera position
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);//camera config
+camera.position.set(0, 300, 650);//camera position
 camera.lookAt(0, 0, 0);
 
 //camera rotation
 //###########################################
 //lights
 //const light = new THREE.PointLight(0xFFE0BD, 2, 1000);
-const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
-//renderer and linking it to the html
+const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
+
+
+//
 const canvas = document.querySelector('#c');
-const renderer = new THREE.WebGLRenderer({ canvas });
-renderer.setClearColor(0xEEEEEE); //background color
+const renderer = new THREE.WebGLRenderer( { canvas } );
+renderer.alpha=true
+
+
+renderer.setClearColor( 0xEEEEEE); // the default
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( window.innerWidth, window.innerHeight );
+//document.body.appendChild( renderer.domElement );
+
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.update();
@@ -51,8 +56,11 @@ function render() {
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         camera.updateProjectionMatrix();
     }
-
+        
     renderer.render(scene, camera);
+
+    
+    
     controls.update();
     requestAnimationFrame(render);
 }
@@ -68,7 +76,7 @@ loader.load(
     function (gltf) {
         scene.add(gltf.scene);
         gltf.animations; // Array<THREE.AnimationClip>
-        gltf.scene; // THREE.Group
+        //gltf.scene.scale.set(10,10,10); // THREE.Group
         gltf.scenes; // Array<THREE.Group>
         gltf.cameras; // Array<THREE.Camera>
         gltf.asset; // Object
@@ -101,30 +109,9 @@ function resizeRendererToDisplaySize(renderer) {
         renderer.setSize(width, height, false);
     }
     return needResize;
+    
 }
 
 
 //to start requestion animation frame loop like while(1)
 requestAnimationFrame(render);
-
-
-function createCSS3DObject(content) 
-    {
-      // convert the string to dome elements
-      var wrapper = document.createElement('div');
-      wrapper.innerHTML = content;
-      var div = wrapper.firstChild;
-
-      // set some values on the div to style it.
-      // normally you do this directly in HTML and 
-      // CSS files.
-      div.style.width = '370px';
-      div.style.height = '370px';
-      div.style.opacity = 0.7;
-      div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
-
-      // create a CSS3Dobject and return it.
-      var object = new CSS3DObject(div);
-      return object;
-    }
-    createCSS3DObject(content) ;
