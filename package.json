@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mourra950/My-Desk-Threejs#readme",
   "dependencies": {
     "aos": "^2.3.4",
+    "html2canvas": "^1.4.1",
     "parcel": "^2.8.2",
     "three": "^0.148.0"
   }
