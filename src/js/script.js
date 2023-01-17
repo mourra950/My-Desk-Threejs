@@ -14,16 +14,18 @@ const scene = new THREE.Scene();
 //camera
 //##########################################
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 20, 0);//camera position
+camera.position.set(0, 20, 5);//camera position
 camera.lookAt(0, 0, 0);
 
 //camera rotation
 //###########################################
 //lights
 //const light = new THREE.PointLight(0xFFE0BD, 2, 1000);
-const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+const sun = new THREE.HemisphereLight(0xffffff, 0x000000, 0.3   );
 scene.add(sun);
+const directionalLight = new THREE.DirectionalLight( 0x4255ff, 0.4 );
 
+scene.add( directionalLight );
 //
 const canvas = document.querySelector('#c');
 const renderer = new THREE.WebGLRenderer( { canvas } );
@@ -61,26 +63,8 @@ loader.load(
         gltf.scenes; // Array<THREE.Group>
         gltf.cameras; // Array<THREE.Camera>
         gltf.asset; // Object
-        // html2canvas(htmlContainer).then(canvas1=> {
-        //     console.log(gltf.scene.getObjectByName('screen').material)
-        //     // Create a Three.js texture from the canvas
-        //     const texture = new THREE.CanvasTexture(canvas1);
-        //     const material = new THREE.MeshBasicMaterial({map: texture});
-        //     gltf.scene.getObjectByName('screen').material=material
-        //    
-        console.log(gltf.scene.getObjectByName('screen').material)
-        //   });
-
-        // html2canvas(htmlContainer).then(canvas => {
-        //     // Create a Three.js texture from the canvas
-        //     const texture = new THREE.CanvasTexture(canvas);
-          
-            
-        //     const material = new THREE.MeshBasicMaterial({map: texture});
-        //     gltf.scene.getObjectByName('screen').material=material
-        //     // Render the scene
-        //     //renderer.render(scene, camera);
-        //   });
+        let placeholder=gltf.scene.getObjectByName('lightsource');
+        directionalLight.position.set(2,2,-13);
         
     },
     // called while loading is progressing
@@ -113,10 +97,7 @@ function resizeRendererToDisplaySize(renderer) {
     return needResize;
     
 }
-const button = document.getElementById('my-button');
-button.addEventListener('click', () => {
-  alert('Button clicked!');
-});
+
 
 //to start requestion animation frame loop like while(1)
 
