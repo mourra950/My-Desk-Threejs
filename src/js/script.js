@@ -82,6 +82,7 @@ function render() {
         camera.updateProjectionMatrix();
     }
      timer++;
+     controls.update();
     renderer.render(scene, camera);
     requestAnimationFrame(render);
 }
