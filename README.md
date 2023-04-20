@@ -1,18 +1,24 @@
 # My Room Threejs
+
 ![image](https://user-images.githubusercontent.com/64339763/213033149-187dc893-c034-4ad1-9cb6-8f86452fd0d8.png)
 
 A simple Threejs scene where I modeled a simple disk using a blender.
 
 ## How to Run
+
 sometimes an error appears using parcel that looks like that.
+
 ```ssh
-parcel : npm\parcel.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at 
+parcel : npm\parcel.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at
 https:/go.microsoft.com/fwlink/?LinkID=135170.
 ```
+
 in this case you must visit this link
+
 ```ssh
 https://www.sharepointdiary.com/2014/03/fix-for-powershell-script-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system.html
 ```
+
 to make the project work you follow these steps.
 to initialize the npm environment
 
