@@ -1,6 +1,9 @@
 # My Room Threejs
 
-![image](https://user-images.githubusercontent.com/64339763/213033149-187dc893-c034-4ad1-9cb6-8f86452fd0d8.png)
+
+![ezgif com-resize (1)](https://user-images.githubusercontent.com/64339763/235426913-1a21d145-9986-4e28-969f-50d743525034.gif)
+
+
 
 A simple Threejs scene where I modeled a simple disk using a blender.
 
