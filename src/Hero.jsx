@@ -99,9 +99,9 @@ function Hero() {
                 <Stars radius={100} depth={150} count={5000} factor={4} saturation={0} fade speed={2} />
                 <Environment
                     background
-                    preset={presetEnv}
+                    // preset={presetEnv}
                     rotation={[1, intensity * Math.PI / 2, 0]}
-                // files="./courtyard_1k.hdr"
+                files="./potsdamer_platz_2k.hdr"
                 />
                 <Center>
                     <Room rotatez={intensity} envMapIntensity={envMapIntensity} />
