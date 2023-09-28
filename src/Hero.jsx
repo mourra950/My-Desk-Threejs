@@ -88,9 +88,9 @@ function Hero() {
                     fov: 5,
                     near: 0.1,
                     far: 2000,
+                    position:[32,32,-32]
                 }}
             >
-                <OrthographicCamera makeDefault near={0.001} scale={0.016} position={position} />
 
                 {/* <directionalLight /> */}
                 {/* <pointLight position={[0, 5, 0]} color={color} intensity={intensity} /> */}
@@ -98,17 +98,17 @@ function Hero() {
                 {/* <Sky distance={450000} sunPosition={[0, 1, 0]} inclination={0} azimuth={0.25}  /> */}
                 <Stars radius={100} depth={150} count={5000} factor={4} saturation={0} fade speed={2} />
                 <Environment
-                    background
+                    background={false}
                     // preset={presetEnv}
                     rotation={[1, intensity * Math.PI / 2, 0]}
-                files="./potsdamer_platz_2k.hdr"
+                    files="./potsdamer_platz_2k.hdr"
                 />
                 <Center>
                     <Room rotatez={intensity} envMapIntensity={envMapIntensity} />
                 </Center>
                 <CameraControls />
 
-                <EffectComposer>
+                {/* <EffectComposer>
                     <Bloom
                         intensity={bloom} // The bloom intensity.
                         blurPass={undefined} // A blur pass.
@@ -119,7 +119,7 @@ function Hero() {
                         luminanceSmoothing={luminanceSmoothing} // smoothness of the luminance threshold. Range is [0, 1]
                     />
 
-                </EffectComposer>
+                </EffectComposer> */}
             </Canvas>
         </>
     );
