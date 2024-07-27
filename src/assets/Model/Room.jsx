@@ -55,7 +55,7 @@ export function Model({ envMapIntensity, rotatez, ...props }) {
           <Html occlude='blending'
             distanceFactor={0.4}
             transform
-            position={[0, 0, 0.028]}
+            position={[0, 0, 0.032]}
           >
             <div className='test4'>
               <iframe src='https://mourra950.github.io/Portofolio/'></iframe>
